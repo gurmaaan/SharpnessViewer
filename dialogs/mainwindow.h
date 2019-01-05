@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
+#include <widgets/clickablegraphicsscene.h>
+#include <QGraphicsView>
 //
 #include <static.h>
 
@@ -19,6 +22,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QGraphicsView *view_;
+    ClickableGraphicsScene *scene_;
 };
 
 #endif // MAINWINDOW_H

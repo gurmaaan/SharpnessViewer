@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="ClickableGraphicsView" name="widget" native="true"/>
+     <widget class="QGraphicsView" name="graphicsView"/>
     </item>
    </layout>
   </widget>
@@ -41,14 +41,6 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>ClickableGraphicsView</class>
-   <extends>QWidget</extends>
-   <header>widgets/clickablegraphicsview.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
