@@ -25,16 +25,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp
+	    main.cpp \
+	    dialogs/mainwindow.cpp \
+	    main.cpp
 
 HEADERS += \
-        mainwindow.h
+	    static.h \
+	    dialogs/mainwindow.h \
+	    static.h
 
 FORMS += \
-        mainwindow.ui
+            dialogs/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+win32: RC_FILE = iconsource.rc
+
+RESOURCES += \
+    source.qrc
