@@ -2,5 +2,21 @@
     <qresource prefix="/">
         <file>icons/favicon.ico</file>
         <file>icons/full_screen_ic.png</file>
+        <file>icons/accept_ic.png</file>
+        <file>icons/app_quit_ic.png</file>
+        <file>icons/cancel_ic.png</file>
+        <file>icons/dev_manual_ic.png</file>
+        <file>icons/first_ic.png</file>
+        <file>icons/fragment_ic.png</file>
+        <file>icons/github_ic.png</file>
+        <file>icons/last_ic.png</file>
+        <file>icons/next_ic.png</file>
+        <file>icons/plot_ic.png</file>
+        <file>icons/previous_ic.png</file>
+        <file>icons/save_ic.png</file>
+        <file>icons/undo_ic.png</file>
+        <file>icons/user_manual_ic.png</file>
+        <file>icons/zoom_in_ic.png</file>
+        <file>icons/zoom_out_ic.png</file>
     </qresource>
 </RCC>

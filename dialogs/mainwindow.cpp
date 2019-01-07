@@ -15,6 +15,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::messageReceiver(QString msgText)
+{
+    ui->statusBar->showMessage(msgText);
+}
+
 void MainWindow::connectAll()
 {
 

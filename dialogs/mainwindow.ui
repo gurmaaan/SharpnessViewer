@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>764</width>
-    <height>975</height>
+    <width>1120</width>
+    <height>961</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Сортировщик изображений</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../source.qrc">
+    <normaloff>:/icons/favicon.ico</normaloff>:/icons/favicon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -20,7 +24,7 @@
       <property name="currentIndex">
        <number>2</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="img_tab">
        <attribute name="title">
         <string>Просмотр</string>
        </attribute>
@@ -30,13 +34,13 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="diff_tab">
        <attribute name="title">
         <string>Разность</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_12">
         <item>
-         <widget class="QSplitter" name="splitter">
+         <widget class="QSplitter" name="diff_spltr">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
             <horstretch>0</horstretch>
@@ -46,10 +50,10 @@
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <widget class="QWidget" name="">
-           <layout class="QVBoxLayout" name="verticalLayout_9">
+          <widget class="QWidget" name="layoutWidget">
+           <layout class="QVBoxLayout" name="diffBaseCurrent_V_lyt">
             <item>
-             <widget class="QLabel" name="label_17">
+             <widget class="QLabel" name="diffBase_lbl">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -62,7 +66,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView">
+             <widget class="QGraphicsView" name="diffBase_gv">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
                 <horstretch>0</horstretch>
@@ -72,7 +76,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_18">
+             <widget class="QLabel" name="diffCurrent_lbl">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -85,7 +89,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView_2">
+             <widget class="QGraphicsView" name="diffCurrent_gv">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
                 <horstretch>0</horstretch>
@@ -96,17 +100,17 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="">
-           <layout class="QVBoxLayout" name="verticalLayout_10">
+          <widget class="QWidget" name="layoutWidget">
+           <layout class="QVBoxLayout" name="diffResult_V_lyt">
             <item>
-             <widget class="QLabel" name="label_19">
+             <widget class="QLabel" name="diffResult_lbl">
               <property name="text">
                <string>Результат</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView_3">
+             <widget class="QGraphicsView" name="diffResult_gv">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
                 <horstretch>0</horstretch>
@@ -120,7 +124,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableView" name="tableView">
+         <widget class="QTableView" name="diff_tv">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
             <horstretch>0</horstretch>
@@ -131,13 +135,13 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_3">
+      <widget class="QWidget" name="plot_tab">
        <attribute name="title">
         <string>График</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
-         <widget class="QGraphicsView" name="graphicsView_4"/>
+         <widget class="QGraphicsView" name="plot_gv"/>
         </item>
        </layout>
       </widget>
@@ -150,24 +154,16 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>764</width>
+     <width>1120</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QDockWidget" name="settings_dock">
+  <widget class="QDockWidget" name="file_dock">
    <property name="minimumSize">
     <size>
-     <width>350</width>
+     <width>300</width>
      <height>470</height>
     </size>
    </property>
@@ -186,7 +182,7 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="settings_dockCntnt">
+   <widget class="QWidget" name="fileDock_cntnt">
     <layout class="QVBoxLayout" name="verticalLayout_6">
      <item>
       <widget class="QGroupBox" name="dir_gb">
@@ -195,22 +191,26 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="PathWidget" name="path" native="true"/>
+         <widget class="PathWidget" name="path_widget" native="true"/>
         </item>
        </layout>
       </widget>
      </item>
      <item>
-      <widget class="Line" name="line_2">
+      <widget class="Line" name="fileFragment_topLine">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QCommandLinkButton" name="commandLinkButton">
+      <widget class="QCommandLinkButton" name="fragmentChoose_cmdBtn">
        <property name="text">
         <string>Выбрать фрагмент</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../source.qrc">
+         <normaloff>:/icons/plot_ic.png</normaloff>:/icons/plot_ic.png</iconset>
        </property>
        <property name="description">
         <string>Задать фрагмент выводимый на экран монитора</string>
@@ -218,9 +218,9 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="fragmentMode_H_lyt">
        <item>
-        <widget class="QRadioButton" name="radioButton">
+        <widget class="QRadioButton" name="fragmentModeAll_rb">
          <property name="text">
           <string>Для всех</string>
          </property>
@@ -230,7 +230,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_2">
+        <widget class="QRadioButton" name="fragmentModeCurrent_rb">
          <property name="text">
           <string>Для текущего</string>
          </property>
@@ -239,7 +239,7 @@
       </layout>
      </item>
      <item>
-      <widget class="Line" name="line">
+      <widget class="Line" name="fileFragment_bottomLine">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -252,9 +252,9 @@
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_9">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <layout class="QVBoxLayout" name="changePrevious_V_lyt">
           <item>
-           <widget class="QToolButton" name="toolButton">
+           <widget class="QToolButton" name="changeBack_btn">
             <property name="minimumSize">
              <size>
               <width>25</width>
@@ -273,7 +273,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_2">
+           <widget class="QToolButton" name="changeFirst_btn">
             <property name="minimumSize">
              <size>
               <width>25</width>
@@ -292,7 +292,7 @@
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer">
+           <spacer name="changePrevious_V_spcr">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -307,18 +307,18 @@
          </layout>
         </item>
         <item>
-         <widget class="Line" name="line_3">
+         <widget class="Line" name="file_leftLint">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <layout class="QVBoxLayout" name="fileAndFragment_V_lyt">
           <item>
-           <layout class="QFormLayout" name="formLayout_2">
+           <layout class="QFormLayout" name="fileInfo_F_lyt">
             <item row="0" column="0">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="fileNum_lbl">
               <property name="text">
                <string>№:</string>
               </property>
@@ -326,14 +326,14 @@
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
               <property name="buddy">
-               <cstring>spinBox</cstring>
+               <cstring>fileNum_sb</cstring>
               </property>
              </widget>
             </item>
             <item row="0" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <layout class="QHBoxLayout" name="fileNum_H_lyt">
               <item>
-               <widget class="QSpinBox" name="spinBox">
+               <widget class="QSpinBox" name="fileNum_sb">
                 <property name="minimumSize">
                  <size>
                   <width>30</width>
@@ -352,7 +352,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_3">
+               <widget class="QLabel" name="fileNumOfAll_lbl">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -366,12 +366,12 @@
                  <set>Qt::AlignCenter</set>
                 </property>
                 <property name="buddy">
-                 <cstring>spinBox_2</cstring>
+                 <cstring>fileAll_sb</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBox_2">
+               <widget class="QSpinBox" name="fileAll_sb">
                 <property name="minimumSize">
                  <size>
                   <width>30</width>
@@ -392,7 +392,7 @@
              </layout>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="fileName_lbl">
               <property name="text">
                <string>Имя:</string>
               </property>
@@ -400,15 +400,15 @@
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
               <property name="buddy">
-               <cstring>lineEdit</cstring>
+               <cstring>fileName_le</cstring>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit"/>
+             <widget class="QLineEdit" name="fileName_le"/>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="imgSize_lbl">
               <property name="text">
                <string>Размер:</string>
               </property>
@@ -416,14 +416,14 @@
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
               <property name="buddy">
-               <cstring>spinBox_3</cstring>
+               <cstring>imgWidth_sb</cstring>
               </property>
              </widget>
             </item>
             <item row="2" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <layout class="QHBoxLayout" name="imgSize_H_lyt">
               <item>
-               <widget class="QSpinBox" name="spinBox_3">
+               <widget class="QSpinBox" name="imgWidth_sb">
                 <property name="minimumSize">
                  <size>
                   <width>50</width>
@@ -445,7 +445,13 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_5">
+               <widget class="QLabel" name="imgSizeX_lbl">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="text">
                  <string>х</string>
                 </property>
@@ -453,12 +459,12 @@
                  <set>Qt::AlignCenter</set>
                 </property>
                 <property name="buddy">
-                 <cstring>spinBox_4</cstring>
+                 <cstring>imgHeight_sb</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBox_4">
+               <widget class="QSpinBox" name="imgHeight_sb">
                 <property name="minimumSize">
                  <size>
                   <width>50</width>
@@ -482,7 +488,7 @@
              </layout>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="scale_lbl">
               <property name="text">
                <string>Увеличение:</string>
               </property>
@@ -490,14 +496,14 @@
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
               <property name="buddy">
-               <cstring>doubleSpinBox</cstring>
+               <cstring>scale_sb</cstring>
               </property>
              </widget>
             </item>
             <item row="3" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <layout class="QHBoxLayout" name="scale_H_lyt">
               <item>
-               <widget class="QDoubleSpinBox" name="doubleSpinBox">
+               <widget class="QDoubleSpinBox" name="scale_sb">
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
@@ -510,7 +516,7 @@
                </widget>
               </item>
               <item>
-               <spacer name="horizontalSpacer">
+               <spacer name="scale_H_spcr">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -527,15 +533,15 @@
            </layout>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBox">
+           <widget class="QGroupBox" name="fragment_gb">
             <property name="title">
              <string>Выводимый фрагмент</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
-              <layout class="QFormLayout" name="formLayout">
+              <layout class="QFormLayout" name="fragment_F_lyt">
                <item row="0" column="0">
-                <widget class="QLabel" name="label_7">
+                <widget class="QLabel" name="fragmentSize_lbl">
                  <property name="text">
                   <string>Размер:</string>
                  </property>
@@ -543,14 +549,14 @@
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                  <property name="buddy">
-                  <cstring>spinBox_5</cstring>
+                  <cstring>fragmentW_sb</cstring>
                  </property>
                 </widget>
                </item>
                <item row="0" column="1">
-                <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <layout class="QHBoxLayout" name="fragmentSize_H_lyt">
                  <item>
-                  <widget class="QSpinBox" name="spinBox_5">
+                  <widget class="QSpinBox" name="fragmentW_sb">
                    <property name="minimumSize">
                     <size>
                      <width>50</width>
@@ -572,7 +578,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_11">
+                  <widget class="QLabel" name="fragmentX_lbl">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -586,12 +592,12 @@
                     <set>Qt::AlignCenter</set>
                    </property>
                    <property name="buddy">
-                    <cstring>spinBox_8</cstring>
+                    <cstring>fragmentH_sb</cstring>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_8">
+                  <widget class="QSpinBox" name="fragmentH_sb">
                    <property name="minimumSize">
                     <size>
                      <width>50</width>
@@ -615,19 +621,19 @@
                 </layout>
                </item>
                <item row="1" column="0">
-                <widget class="QLabel" name="label_12">
+                <widget class="QLabel" name="fragmentTL_lbl">
                  <property name="text">
                   <string>Лево верх:</string>
                  </property>
                  <property name="buddy">
-                  <cstring>spinBox_7</cstring>
+                  <cstring>fragmentTLy_sb</cstring>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <layout class="QHBoxLayout" name="fragmentTL_H_lyt">
                  <item>
-                  <widget class="QLabel" name="label_8">
+                  <widget class="QLabel" name="fragmentTLleft_lbl">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -641,12 +647,12 @@
                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                    <property name="buddy">
-                    <cstring>spinBox_6</cstring>
+                    <cstring>fragmentTLx_sb</cstring>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_6">
+                  <widget class="QSpinBox" name="fragmentTLx_sb">
                    <property name="minimumSize">
                     <size>
                      <width>30</width>
@@ -665,7 +671,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_10">
+                  <widget class="QLabel" name="fragmentTL_X_lbl">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -679,12 +685,12 @@
                     <set>Qt::AlignCenter</set>
                    </property>
                    <property name="buddy">
-                    <cstring>spinBox_6</cstring>
+                    <cstring>fragmentTLx_sb</cstring>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_7">
+                  <widget class="QSpinBox" name="fragmentTLy_sb">
                    <property name="minimumSize">
                     <size>
                      <width>30</width>
@@ -703,7 +709,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_9">
+                  <widget class="QLabel" name="fragmentTLright_lbl">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -714,26 +720,26 @@
                     <string>)</string>
                    </property>
                    <property name="buddy">
-                    <cstring>spinBox_7</cstring>
+                    <cstring>fragmentTLy_sb</cstring>
                    </property>
                   </widget>
                  </item>
                 </layout>
                </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="label_13">
+                <widget class="QLabel" name="fragmentBR_lbl">
                  <property name="text">
                   <string>Право низ:</string>
                  </property>
                  <property name="buddy">
-                  <cstring>spinBox_10</cstring>
+                  <cstring>fragmentBRy_sb</cstring>
                  </property>
                 </widget>
                </item>
                <item row="2" column="1">
-                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <layout class="QHBoxLayout" name="fragmentBR_H_lyt">
                  <item>
-                  <widget class="QLabel" name="label_14">
+                  <widget class="QLabel" name="fragmentBRleft_lbl">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -747,12 +753,12 @@
                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                    </property>
                    <property name="buddy">
-                    <cstring>spinBox_9</cstring>
+                    <cstring>fragmentBRx_sb</cstring>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_9">
+                  <widget class="QSpinBox" name="fragmentBRx_sb">
                    <property name="minimumSize">
                     <size>
                      <width>30</width>
@@ -771,7 +777,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_15">
+                  <widget class="QLabel" name="fragmentBRX_lbl">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -785,12 +791,12 @@
                     <set>Qt::AlignCenter</set>
                    </property>
                    <property name="buddy">
-                    <cstring>spinBox_9</cstring>
+                    <cstring>fragmentBRx_sb</cstring>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinBox_10">
+                  <widget class="QSpinBox" name="fragmentBRy_sb">
                    <property name="minimumSize">
                     <size>
                      <width>30</width>
@@ -809,7 +815,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_16">
+                  <widget class="QLabel" name="fragmentBRright_lbl">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -820,7 +826,7 @@
                     <string>)</string>
                    </property>
                    <property name="buddy">
-                    <cstring>spinBox_10</cstring>
+                    <cstring>fragmentBRy_sb</cstring>
                    </property>
                   </widget>
                  </item>
@@ -829,9 +835,9 @@
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <layout class="QHBoxLayout" name="fragmentChange_H_lyt">
                <item>
-                <spacer name="horizontalSpacer_2">
+                <spacer name="fragmentChange_leftSpcr">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -844,14 +850,14 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="fragmentChange_btn">
                  <property name="text">
                   <string>Изменить</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_3">
+                <spacer name="fragmentChange">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -871,16 +877,16 @@
          </layout>
         </item>
         <item>
-         <widget class="Line" name="line_4">
+         <widget class="Line" name="file_rightLine">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QVBoxLayout" name="changeNext_V_lyt">
           <item>
-           <widget class="QToolButton" name="toolButton_3">
+           <widget class="QToolButton" name="changeNext_btn">
             <property name="minimumSize">
              <size>
               <width>25</width>
@@ -899,7 +905,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_4">
+           <widget class="QToolButton" name="changeLast_btn">
             <property name="minimumSize">
              <size>
               <width>25</width>
@@ -918,7 +924,7 @@
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer_2">
+           <spacer name="change_V_spcr">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -936,7 +942,7 @@
       </widget>
      </item>
      <item>
-      <spacer name="verticalSpacer_3">
+      <spacer name="file_V_spcr">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
@@ -951,7 +957,19 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="dockWidget">
+  <widget class="QDockWidget" name="diff_dock">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>294</width>
+     <height>120</height>
+    </size>
+   </property>
    <property name="features">
     <set>QDockWidget::DockWidgetMovable</set>
    </property>
@@ -962,14 +980,14 @@
     <string>Вычетание</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents">
+   <widget class="QWidget" name="diff_dockCntnt">
     <layout class="QVBoxLayout" name="verticalLayout_13">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <layout class="QHBoxLayout" name="baseImg_H_lyt">
        <item>
-        <widget class="QLabel" name="label_20">
+        <widget class="QLabel" name="baseImg_lbl">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -979,10 +997,13 @@
          <property name="text">
           <string>Опорный кадр:</string>
          </property>
+         <property name="buddy">
+          <cstring>baseImg_cb</cstring>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="baseImg_cb">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -998,7 +1019,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_21">
+        <widget class="QLabel" name="baseImgNum_lbl">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -1011,10 +1032,13 @@
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
+         <property name="buddy">
+          <cstring>baseImgNum_sb</cstring>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox_11">
+        <widget class="QSpinBox" name="baseImgNum_sb">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1039,7 +1063,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_5">
+        <widget class="QToolButton" name="baseImgAccept_btn">
          <property name="minimumSize">
           <size>
            <width>25</width>
@@ -1052,13 +1076,26 @@
            <height>25</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Установить выбранное изображение в качестве опорного</string>
+         </property>
+         <property name="statusTip">
+          <string>Установить выбранное изображение в качестве опорного</string>
+         </property>
+         <property name="whatsThis">
+          <string>Установить выбранное изображение в качестве опорного</string>
+         </property>
          <property name="text">
           <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../source.qrc">
+           <normaloff>:/icons/accept_ic.png</normaloff>:/icons/accept_ic.png</iconset>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_6">
+        <widget class="QToolButton" name="baseImgReset_btn">
          <property name="minimumSize">
           <size>
            <width>25</width>
@@ -1071,17 +1108,30 @@
            <height>25</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Установить выбранное изображение в качестве опорного</string>
+         </property>
+         <property name="statusTip">
+          <string>Установить выбранное изображение в качестве опорного</string>
+         </property>
+         <property name="whatsThis">
+          <string>Установить выбранное изображение в качестве опорного</string>
+         </property>
          <property name="text">
           <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../source.qrc">
+           <normaloff>:/icons/cancel_ic.png</normaloff>:/icons/cancel_ic.png</iconset>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_11">
+      <layout class="QHBoxLayout" name="diffKoef_H_lyt">
        <item>
-        <widget class="QLabel" name="label_22">
+        <widget class="QLabel" name="diffKoeff_lbl">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Коэффициент усиления резкости&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
@@ -1097,10 +1147,13 @@
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
+         <property name="buddy">
+          <cstring>diffKoef_sldr</cstring>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QSlider" name="horizontalSlider">
+        <widget class="QSlider" name="diffKoef_sldr">
          <property name="maximum">
           <number>127</number>
          </property>
@@ -1110,7 +1163,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox_12">
+        <widget class="QSpinBox" name="diffCoef_sb">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1136,11 +1189,17 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="dockWidget_2">
+  <widget class="QDockWidget" name="sharp_dock">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="minimumSize">
     <size>
-     <width>350</width>
-     <height>350</height>
+     <width>358</width>
+     <height>400</height>
     </size>
    </property>
    <property name="features">
@@ -1150,21 +1209,24 @@
     <string>Резкость</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_2">
+   <widget class="QWidget" name="sharp_dockCntnt">
     <layout class="QVBoxLayout" name="verticalLayout_14">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <layout class="QHBoxLayout" name="sharpValue_H_lyt">
        <item>
-        <widget class="QLabel" name="label_23">
+        <widget class="QLabel" name="sharpValue_lbl">
          <property name="text">
           <string>Текущий критерий резкости:</string>
+         </property>
+         <property name="buddy">
+          <cstring>sharpValue_sb</cstring>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+        <widget class="QDoubleSpinBox" name="sharpValue_sb">
          <property name="minimumSize">
           <size>
            <width>40</width>
@@ -1174,7 +1236,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="horizontalSpacer_4">
+        <spacer name="sharpValue_H_spcr">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -1189,16 +1251,19 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_13">
+      <layout class="QHBoxLayout" name="mostSharpValue_H_lyt">
        <item>
-        <widget class="QLabel" name="label_24">
+        <widget class="QLabel" name="mostSharpValueImg_lbl">
          <property name="text">
           <string>Резкий кадр:</string>
+         </property>
+         <property name="buddy">
+          <cstring>mostSharpValueImgName_le</cstring>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="mostSharpValueImgName_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1208,7 +1273,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_25">
+        <widget class="QLabel" name="mostSharpValueImgNum_lbl">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -1221,10 +1286,13 @@
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
+         <property name="buddy">
+          <cstring>mostSharpValueImgNum_sb</cstring>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox_13">
+        <widget class="QSpinBox" name="mostSharpValueImgNum_sb">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1249,14 +1317,17 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_26">
+        <widget class="QLabel" name="mostSharpValue_lbl">
          <property name="text">
           <string>Значение:</string>
+         </property>
+         <property name="buddy">
+          <cstring>mostSharpValue_sb</cstring>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+        <widget class="QDoubleSpinBox" name="mostSharpValue_sb">
          <property name="minimumSize">
           <size>
            <width>40</width>
@@ -1268,7 +1339,7 @@
       </layout>
      </item>
      <item>
-      <widget class="QCommandLinkButton" name="commandLinkButton_2">
+      <widget class="QCommandLinkButton" name="buildPlot_cmdBtn">
        <property name="text">
         <string>Построить график</string>
        </property>
@@ -1278,16 +1349,19 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_15">
+      <layout class="QHBoxLayout" name="linePos_H_lyt">
        <item>
-        <widget class="QLabel" name="label_27">
+        <widget class="QLabel" name="linePos_lbl">
          <property name="text">
           <string>Смещение линии</string>
+         </property>
+         <property name="buddy">
+          <cstring>linePos_sldr</cstring>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSlider" name="horizontalSlider_2">
+        <widget class="QSlider" name="linePos_sldr">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -1296,98 +1370,189 @@
       </layout>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox_2">
+      <widget class="QGroupBox" name="sharpDeviation_gb">
        <property name="title">
         <string>Порог</string>
        </property>
-       <layout class="QFormLayout" name="formLayout_3">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_28">
-          <property name="text">
-           <string>Порог допустимого отклонения:</string>
-          </property>
-         </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="sharpDeviation_H_lyt">
+          <item>
+           <widget class="QLabel" name="sharpDeviation_lbl">
+            <property name="text">
+             <string>Порог допустимого отклонения:</string>
+            </property>
+            <property name="buddy">
+             <cstring>sharpDeviation_sb</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="sharpDeviation_sb">
+            <property name="toolTip">
+             <string>Допустимое отклонение критерия резкости от самого резкого изображения</string>
+            </property>
+            <property name="statusTip">
+             <string>Допустимое отклонение критерия резкости от самого резкого изображения</string>
+            </property>
+            <property name="whatsThis">
+             <string>Допустимое отклонение критерия резкости от самого резкого изображения</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_4"/>
-        </item>
-        <item row="1" column="0" colspan="2">
-         <widget class="Line" name="line_5">
+        <item>
+         <widget class="Line" name="sharpDeviation_line">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_29">
-          <property name="text">
-           <string>Попадают (абсолютное):</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="spinBox_14">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-          <property name="buttonSymbols">
-           <enum>QAbstractSpinBox::NoButtons</enum>
-          </property>
-          <property name="suffix">
-           <string> шт</string>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_30">
-          <property name="text">
-           <string>Попадают (относительное):</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_5">
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-          <property name="buttonSymbols">
-           <enum>QAbstractSpinBox::NoButtons</enum>
-          </property>
-          <property name="suffix">
-           <string> %</string>
-          </property>
-         </widget>
+        <item>
+         <layout class="QHBoxLayout" name="imgValidation_H_lyt">
+          <item>
+           <widget class="QGroupBox" name="validImgsCnt_gb">
+            <property name="title">
+             <string>Не попадают</string>
+            </property>
+            <layout class="QFormLayout" name="formLayout_2">
+             <item row="0" column="0">
+              <widget class="QLabel" name="validImgsCnt_lbl">
+               <property name="text">
+                <string>Абсолютное:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="validImgsCnt_sb">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="suffix">
+                <string> шт</string>
+               </property>
+               <property name="prefix">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="validImgsPercentage_lbl">
+               <property name="text">
+                <string>Относительное:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="validImgsPercentage_sb">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="suffix">
+                <string> %</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="invalidImgsCnt_gb">
+            <property name="title">
+             <string>Не попадают</string>
+            </property>
+            <layout class="QFormLayout" name="formLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="invalidImgsCnt_lbl">
+               <property name="text">
+                <string>Абсолютное:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="invalidImgsCnt_sb">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="suffix">
+                <string> шт</string>
+               </property>
+               <property name="prefix">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="invalidImgsPercentage_lbl">
+               <property name="text">
+                <string>Относительное:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="invalidImgsPercentage_sb">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="suffix">
+                <string> %</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_14">
+      <layout class="QHBoxLayout" name="saveImgs_H_lyt">
        <item>
-        <widget class="QLabel" name="label_31">
+        <widget class="QLabel" name="saveImgs_lbl">
          <property name="text">
           <string>Папка</string>
+         </property>
+         <property name="buddy">
+          <cstring>saveImgs_le</cstring>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QLineEdit" name="saveImgs_le">
          <property name="placeholderText">
           <string>unsharp</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_7">
+        <widget class="QToolButton" name="saveImgs_btn">
          <property name="minimumSize">
           <size>
            <width>25</width>
@@ -1400,13 +1565,26 @@
            <height>25</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Сохранить все файлы непопадающие в допустимое отклонение в указанную папку</string>
+         </property>
+         <property name="statusTip">
+          <string>Сохранить все файлы непопадающие в допустимое отклонение в указанную папку</string>
+         </property>
+         <property name="whatsThis">
+          <string>Сохранить все файлы непопадающие в допустимое отклонение в указанную папку</string>
+         </property>
          <property name="text">
           <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../source.qrc">
+           <normaloff>:/icons/save_ic.png</normaloff>:/icons/save_ic.png</iconset>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton_8">
+        <widget class="QToolButton" name="saveImgsCancel_btn">
          <property name="minimumSize">
           <size>
            <width>25</width>
@@ -1419,12 +1597,38 @@
            <height>25</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string>Отменить перемещение непопадающих в допустимое отклонение в указанную папку</string>
+         </property>
+         <property name="statusTip">
+          <string>Отменить перемещение непопадающих в допустимое отклонение в указанную папку</string>
+         </property>
+         <property name="whatsThis">
+          <string>Отменить перемещение непопадающих в допустимое отклонение в указанную папку</string>
+         </property>
          <property name="text">
           <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../source.qrc">
+           <normaloff>:/icons/undo_ic.png</normaloff>:/icons/undo_ic.png</iconset>
          </property>
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </widget>
@@ -1445,6 +1649,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../source.qrc"/>
+ </resources>
  <connections/>
 </ui>
