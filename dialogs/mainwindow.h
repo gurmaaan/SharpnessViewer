@@ -20,6 +20,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void messageReceiver(QString msgText);
+
 private:
     //varibles
     Ui::MainWindow *ui;
