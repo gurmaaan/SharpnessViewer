@@ -27,15 +27,21 @@ CONFIG += c++11
 SOURCES += \
 	    main.cpp \
             dialogs/mainwindow.cpp \
-            widgets/clickablegraphicsscene.cpp
+            widgets/clickablegraphicsscene.cpp \
+    widgets/imagewidget.cpp \
+    widgets/pathwidget.cpp
 
 HEADERS += \
 	    static.h \
             dialogs/mainwindow.h \
-            widgets/clickablegraphicsscene.h
+            widgets/clickablegraphicsscene.h \
+    widgets/imagewidget.h \
+    widgets/pathwidget.h
 
 FORMS += \
-            dialogs/mainwindow.ui
+            dialogs/mainwindow.ui \
+    widgets/imagewidget.ui \
+    widgets/pathwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

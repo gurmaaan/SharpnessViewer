@@ -21,9 +21,14 @@ public:
     ~MainWindow();
 
 private:
+    //varibles
     Ui::MainWindow *ui;
     QGraphicsView *view_;
     ClickableGraphicsScene *scene_;
+
+    //methods
+    void connectAll();
+    void setupWidgets();
 };
 
 #endif // MAINWINDOW_H

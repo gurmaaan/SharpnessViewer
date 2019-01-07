@@ -6,12 +6,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    view_ = ui->graphicsView;
-    scene_ = new ClickableGraphicsScene;
-    view_->setScene(scene_);
+    connectAll();
+    setupWidgets();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::connectAll()
+{
+
+}
+
+void MainWindow::setupWidgets()
+{
+    ui->path->setDialogType(PathType::Folder);
 }
