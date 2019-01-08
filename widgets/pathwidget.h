@@ -77,12 +77,13 @@ public:
     ~PathWidget();
 
     PathType dialogType() const;
-    void setDialogType(const PathType &dialogType);
     QString path() const;
-    void setPath(const QString &path);
-    void setPlaceholder(const PathType &pt);
-
+    QString initFileDialog();
     QStringList localPathes() const;
+
+    void setPlaceholder(const PathType &pt);
+    void setDialogType(const PathType &dialogType);
+    void setPath(const QString &path);
     void setLocalPathes(const QStringList &localPathes);
 
 signals:
@@ -114,7 +115,6 @@ private:
     QString requiredPath(const QString &redirect = "",
                          const QStandardPaths::StandardLocation &loc = QStandardPaths::HomeLocation,
                          QDir currentDir = QDir::current());
-    QString initFileDialog();
     void createLocalPathesList(QString basePath);
 };
 

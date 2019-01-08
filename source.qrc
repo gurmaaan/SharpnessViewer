@@ -24,5 +24,7 @@
         <file>icons/fragmentForAll_ic.png</file>
         <file>icons/baseImgAccept_ic.png</file>
         <file>icons/baseImgReset_ic.png</file>
+        <file alias="DevReference">manuals/README.md</file>
+        <file alias="UserManual">manuals/UserManual.pdf</file>
     </qresource>
 </RCC>

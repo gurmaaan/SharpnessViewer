@@ -310,7 +310,7 @@
         <item>
          <layout class="QVBoxLayout" name="changePrevious_V_lyt">
           <item>
-           <widget class="QToolButton" name="changeBack_btn">
+           <widget class="QToolButton" name="changePrevious_btn">
             <property name="minimumSize">
              <size>
               <width>25</width>
@@ -1500,6 +1500,9 @@
                <property name="text">
                 <string>Абсолютное:</string>
                </property>
+               <property name="buddy">
+                <cstring>validImgsCnt_sb</cstring>
+               </property>
               </widget>
              </item>
              <item row="0" column="1">
@@ -1525,6 +1528,9 @@
               <widget class="QLabel" name="validImgsPercentage_lbl">
                <property name="text">
                 <string>Относительное:</string>
+               </property>
+               <property name="buddy">
+                <cstring>validImgsPercentage_sb</cstring>
                </property>
               </widget>
              </item>
@@ -1558,6 +1564,9 @@
                <property name="text">
                 <string>Абсолютное:</string>
                </property>
+               <property name="buddy">
+                <cstring>invalidImgsCnt_sb</cstring>
+               </property>
               </widget>
              </item>
              <item row="0" column="1">
@@ -1583,6 +1592,9 @@
               <widget class="QLabel" name="invalidImgsPercentage_lbl">
                <property name="text">
                 <string>Относительное:</string>
+               </property>
+               <property name="buddy">
+                <cstring>invalidImgsPercentage_sb</cstring>
                </property>
               </widget>
              </item>
@@ -2020,5 +2032,262 @@
  <resources>
   <include location="../source.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>changePrevious_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionPreviousImg</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>32</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>changeFirst_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionFirstImg</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>32</x>
+     <y>279</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>changeLast_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionLastImg</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>297</x>
+     <y>279</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>changeNext_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionNextImg</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>297</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fragmentChoose_cmdBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionChoseFragment</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>164</x>
+     <y>146</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseImgReset_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionBaseImgReset</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1097</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buildPlot_cmdBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionBuildPlot</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>925</x>
+     <y>273</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fragmentChange_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionChangeFragment</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>165</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>559</x>
+     <y>480</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fragmentModeAll_rb</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>actionFragmentForAll</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>85</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fragmentModeCurrent_rb</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>actionFragmentForCurrent</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveImgs_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionSaveImgs</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1066</x>
+     <y>512</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseImgAccept_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionbaseImgAccept</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1066</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveImgsCancel_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>actionUndoSave</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1097</x>
+     <y>512</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFragmentForAll</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>fragmentModeAll_rb</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>85</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFragmentForCurrent</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>fragmentModeCurrent_rb</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
