@@ -84,12 +84,9 @@ public:
     void setPlaceholder(const PathType &pt);
     void setDialogType(const PathType &dialogType);
     void setPath(const QString &path);
-    void setLocalPathes(const QStringList &localPathes);
 
 signals:
     void pathChanged(QString path);
-    void localPathesChanged(QStringList localPathes);
-    void imgCountChanged(int imgCount);
 
 private slots:
     void on_chose_action_triggered();
@@ -99,7 +96,6 @@ private:
     Ui::PathWidget *ui;
     PathType dialogType_;
     QString path_;
-    QStringList localPathes_;
 
     //methods
     //  static

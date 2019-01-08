@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QDebug>
-#include <widgets/clickablegraphicsscene.h>
 #include <QGraphicsView>
 #include <QDesktopServices>
 #include <QTemporaryDir>
@@ -11,6 +10,8 @@
 #include <QUrl>
 //
 #include <static.h>
+#include "widgets/clickablegraphicsscene.h"
+#include "widgets/imagewidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -39,8 +40,6 @@ private slots:
     void on_actionFragmentForCurrent_triggered(bool checked);
     void on_fragmentModeAll_rb_clicked(bool checked);
     void on_fragmentModeCurrent_rb_clicked(bool checked);
-    void on_actionZoomIn_triggered();
-    void on_actionZoomOut_triggered();
     void on_actionbaseImgAccept_triggered();
     void on_actionBaseImgReset_triggered();
     void on_actionGitHub_triggered();

@@ -12,10 +12,12 @@
 #include <QLabel>
 #include <QGuiApplication>
 #include <QScreen>
+#include <QDir>
 #include <QDialog>
 #include <QDesktopWidget>
-
-#include <static.h>
+//
+#include "static.h"
+#include "clickablegraphicsscene.h"
 
 namespace Ui {
 class ImageWidget;
@@ -31,18 +33,27 @@ public:
     void loadImages(QString baseAbsolutePath, QStringList imagesLocalPathes);
     void setFrontImage(const QPixmap &value);
     void setImages(const QVector<QPixmap> &value);
-    void scaleImage(int k);
+    void scaleImage(int scaleRatio);
+    void setScaleRatio(int scaleRatio);
+    void setImgNames(const QStringList &imgNames);
+    //
+    int scaleRatio() const;
 
 public slots:
     void setBasePath(const QString &basePath);
-    void setImgNames(const QStringList &imgNames);
-    void on_plus_toolbtn_clicked();
-    void on_minus_toolbtn_clicked();
-    void on_fullscreen_toolbtn_clicked();
+    void showImgFullScreen();
+    void defaultZoomIn();
+    void defaultZoomOut();
+
+signals:
+    void imgCntChanged(int imgCnt);
 
 private slots:
     void on_preview_table_clicked(const QModelIndex &index);
     void on_zoom_v_slider_sliderMoved(int position);
+    void on_plus_toolbtn_clicked();
+    void on_minus_toolbtn_clicked();
+    void on_fullscreen_toolbtn_clicked();
 
 private:
     Ui::ImageWidget *ui;
@@ -51,11 +62,10 @@ private:
     QVector<QPixmap> images_;
     QString basePath_;
     QStringList imgNames_;
-    QGraphicsScene *scene_;
-    int k_;
+    ClickableGraphicsScene *scene_;
+    int scaleRatio_;
 
-    bool fileExists(QString path);
-    QSize scaledSize(int k);
+    QSize scaledSize(int scaleRatio);
     QPixmap createPixmapWithtext(QString text, QSize size = QSize(100, 100));
 };
 

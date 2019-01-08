@@ -7,8 +7,8 @@ ImageWidget::ImageWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     previewModel_ = new QStandardItemModel;
-    scene_ = new QGraphicsScene;
-    k_ = 0;
+    scene_ = new ClickableGraphicsScene;
+    scaleRatio_ = 0;
 
     ui->preview_table->setModel(previewModel_);
     ui->main_photo_gv->setScene(scene_);
@@ -32,7 +32,8 @@ void ImageWidget::loadImages(QString baseAbsolutePath, QStringList imagesLocalPa
         QPixmap pixMapAtI(fullPath);
         imgVector.push_back(pixMapAtI);
         QStandardItem* item = new QStandardItem();
-        if(fileExists(fullPath))
+        QFileInfo imgFile(fullPath);
+        if(imgFile.exists() && imgFile.isFile())
         {
             item->setIcon(pixMapAtI);
         }
@@ -51,23 +52,12 @@ void ImageWidget::loadImages(QString baseAbsolutePath, QStringList imagesLocalPa
     }
 
     setImages(imgVector);
-    setFrontImage(imgVector.at(0));
+    setFrontImage(imgVector.first());
 
     previewModel_->appendRow(previewRow);
     previewModel_->appendRow(imgNameRow);
     ui->preview_table->setRowHeight(0,100);
     ui->preview_table->setCurrentIndex( ui->preview_table->model()->index(0,0));
-}
-
-bool ImageWidget::fileExists(QString path)
-{
-    QFileInfo check_file(path);
-    // check if file exists and if yes: Is it really a file and no directory?
-    if (check_file.exists() && check_file.isFile()) {
-        return true;
-    } else {
-        return false;
-    }
 }
 
 QSize ImageWidget::scaledSize(int k)
@@ -88,13 +78,13 @@ QPixmap ImageWidget::createPixmapWithtext(QString text, QSize size)
     pixmap.fill( QColor(Qt::white) );
     QPainter painter( &pixmap );
     painter.setFont( QFont("Arial") );
-    painter.drawText( QPoint(size.width() / 10, size.height() / 10), text );
+    painter.drawText( QPoint(size.width() / 2, size.height() / 2), text );
     return pixmap;
 }
 
-void ImageWidget::setImgNames(const QStringList &imgNames) {
+void ImageWidget::setImgNames(const QStringList &imgNames)
+{
     imgNames_ = imgNames;
-    loadImages(basePath_, imgNames_);
 }
 
 void ImageWidget::scaleImage(int k)
@@ -109,7 +99,28 @@ void ImageWidget::scaleImage(int k)
 
 void ImageWidget::setBasePath(const QString &basePath)
 {
-    basePath_ = basePath;
+    QDir rootDir(basePath);
+    if(rootDir.exists())
+    {
+        basePath_ = basePath;
+        QStringList localPathes = rootDir.entryList(QDir::Files);
+        if(!localPathes.isEmpty())
+        {
+            setImgNames(localPathes);
+            emit imgCntChanged(localPathes.count());
+            loadImages(basePath, localPathes);
+        }
+        else
+        {
+            qDebug() << QString("Error. Folder %1 doesn't contain eny files.").arg(basePath) << endl;
+            qDebug() << "Folder contains: " << rootDir.entryList();
+            return;
+        }
+    }
+    else
+    {
+        qDebug() << QString("Error. Folder %1 doen't exists").arg(basePath);
+    }
 }
 
 void ImageWidget::setImages(const QVector<QPixmap> &value)
@@ -126,22 +137,7 @@ void ImageWidget::setFrontImage(const QPixmap &value)
 
 void ImageWidget::on_fullscreen_toolbtn_clicked()
 {
-    QDialog *fsDialog = new QDialog;
-    QVBoxLayout *layout = new QVBoxLayout;
-    QLabel *label = new QLabel;
-
-    QPixmap activePm;
-    int index = ui->preview_table->selectionModel()->selectedIndexes().at(0).column();
-    qDebug() << "Selected column " << index;
-    if(index >= 0)
-        activePm = images_.at(index);
-    else
-        activePm = images_.at(0);
-
-    label->setPixmap(activePm.scaled( QGuiApplication::screens().first()->size() ));
-    layout->addWidget(label);
-    fsDialog->setLayout(layout);
-    fsDialog->showFullScreen();
+    showImgFullScreen();
 }
 
 void ImageWidget::on_preview_table_clicked(const QModelIndex &index)
@@ -151,20 +147,62 @@ void ImageWidget::on_preview_table_clicked(const QModelIndex &index)
 
 void ImageWidget::on_plus_toolbtn_clicked()
 {
-    k_+=5;
-    scaleImage(k_);
-    ui->zoom_v_slider->setValue(k_);
+    defaultZoomIn();
 }
 
 void ImageWidget::on_minus_toolbtn_clicked()
 {
-    k_-=5;
-    scaleImage(k_);
-    ui->zoom_v_slider->setValue(k_);
+    defaultZoomOut();
+}
+
+void ImageWidget::defaultZoomIn()
+{
+    setScaleRatio(scaleRatio_+=5);
+}
+
+void ImageWidget::defaultZoomOut()
+{
+    setScaleRatio(scaleRatio_-=5);
 }
 
 void ImageWidget::on_zoom_v_slider_sliderMoved(int position)
 {
-    k_ = position;
-    scaleImage(k_);
+    scaleRatio_ = position;
+    scaleImage(scaleRatio_);
+}
+
+int ImageWidget::scaleRatio() const
+{
+    return scaleRatio_;
+}
+
+void ImageWidget::setScaleRatio(int k)
+{
+    scaleRatio_ = k;
+    scaleImage(scaleRatio_);
+    ui->zoom_v_slider->setValue(scaleRatio_);
+}
+
+void ImageWidget::showImgFullScreen()
+{
+    QDialog *fsDialog = new QDialog;
+    QVBoxLayout *layout = new QVBoxLayout;
+    QLabel *label = new QLabel;
+
+    QPixmap activePm;
+    if(!images_.empty())
+    {
+        int index = ui->preview_table->selectionModel()->selectedIndexes().first().column();
+        if(index >= 0)
+            activePm = images_.at(index);
+        else
+            activePm = images_.first();
+    }
+    else
+        activePm = createPixmapWithtext( "NULL", QGuiApplication::screens().first()->size() );
+
+    label->setPixmap(activePm.scaled( QGuiApplication::screens().first()->size() ));
+    layout->addWidget(label);
+    fsDialog->setLayout(layout);
+    fsDialog->showFullScreen();
 }

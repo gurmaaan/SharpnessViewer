@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="img_tab">
        <attribute name="title">
@@ -184,6 +184,9 @@
     <addaction name="actionFragmentForAll"/>
     <addaction name="actionFragmentForCurrent"/>
     <addaction name="separator"/>
+    <addaction name="actionFullScreen"/>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
    </widget>
    <widget class="QMenu" name="info_menu">
     <property name="title">
@@ -2011,6 +2014,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="icon">
+    <iconset resource="../source.qrc">
+     <normaloff>:/icons/full_screen_ic.png</normaloff>:/icons/full_screen_ic.png</iconset>
+   </property>
+   <property name="text">
+    <string>Во весь экран</string>
+   </property>
+   <property name="toolTip">
+    <string>Открыть текущее изображение на весь экран</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
  </widget>

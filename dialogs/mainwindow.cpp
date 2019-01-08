@@ -23,7 +23,19 @@ void MainWindow::messageReceiver(QString msgText)
 
 void MainWindow::connectAll()
 {
+    connect(ui->actionFullScreen, &QAction::triggered,
+            ui->img_view, &ImageWidget::showImgFullScreen);
+    connect(ui->actionZoomIn, &QAction::triggered,
+            ui->img_view, &ImageWidget::defaultZoomIn);
+    connect(ui->actionZoomOut, &QAction::triggered,
+            ui->img_view, &ImageWidget::defaultZoomOut);
 
+    connect(ui->path_widget, &PathWidget::pathChanged,
+            ui->img_view, &ImageWidget::setBasePath);
+    connect(ui->img_view, &ImageWidget::imgCntChanged,
+            ui->fileAll_sb, &QSpinBox::setMaximum);
+    connect(ui->img_view, &ImageWidget::imgCntChanged,
+            ui->fileAll_sb, &QSpinBox::setValue);
 }
 
 void MainWindow::setupWidgets()
@@ -121,16 +133,6 @@ void MainWindow::on_fragmentModeCurrent_rb_clicked(bool checked)
 {
     on_actionFragmentForCurrent_triggered(checked);
     ui->actionFragmentForAll->setChecked(!checked);
-}
-
-void MainWindow::on_actionZoomIn_triggered()
-{
-
-}
-
-void MainWindow::on_actionZoomOut_triggered()
-{
-
 }
 
 void MainWindow::on_actionbaseImgAccept_triggered()

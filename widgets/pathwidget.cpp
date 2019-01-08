@@ -18,16 +18,6 @@ void PathWidget::on_chose_action_triggered()
     setPath( initFileDialog() );
 }
 
-QStringList PathWidget::localPathes() const
-{
-    return localPathes_;
-}
-
-void PathWidget::setLocalPathes(const QStringList &localPathes)
-{
-    localPathes_ = localPathes;
-}
-
 QString PathWidget::path() const
 {
     return path_;
@@ -38,8 +28,6 @@ void PathWidget::setPath(const QString &path)
     path_ = path;
     ui->path_le->setText(path);
     emit pathChanged(path);
-    if(dialogType() == PathType::Folder)
-        createLocalPathesList(path);
 }
 
 void PathWidget::setPlaceholder(const PathType &pt)
@@ -237,20 +225,6 @@ QString PathWidget::initFileDialog()
     }
 
     return selectedPath;
-}
-
-void PathWidget::createLocalPathesList(QString basePath)
-{
-    QStringList localPths = QStringList();
-    QDir rootDir(basePath);
-    if(rootDir.exists())
-    {
-
-    }
-    else
-    {
-
-    }
 }
 
 QString PathWidget::requiredPath(const QString &redirect, const QStandardPaths::StandardLocation &loc, QDir currentDir)
