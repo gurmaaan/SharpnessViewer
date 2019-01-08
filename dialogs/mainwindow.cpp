@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    showMaximized();
     connectAll();
     setupWidgets();
 }
@@ -27,5 +28,5 @@ void MainWindow::connectAll()
 
 void MainWindow::setupWidgets()
 {
-    ui->path->setDialogType(PathType::Folder);
+    ui->path_widget->setDialogType(PathType::Folder);
 }

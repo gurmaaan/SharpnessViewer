@@ -18,5 +18,11 @@
         <file>icons/user_manual_ic.png</file>
         <file>icons/zoom_in_ic.png</file>
         <file>icons/zoom_out_ic.png</file>
+        <file>icons/open_folder_ic.png</file>
+        <file>icons/changeFragment_ic.png</file>
+        <file>icons/fragmentSingle_ic.png</file>
+        <file>icons/fragmentForAll_ic.png</file>
+        <file>icons/baseImgAccept_ic.png</file>
+        <file>icons/baseImgReset_ic.png</file>
     </qresource>
 </RCC>
